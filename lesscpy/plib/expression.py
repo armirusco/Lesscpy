@@ -114,6 +114,9 @@ class Expression(Node):
             '!=': '__ne__',
             '<>': '__ne__',
         }.get(oper)
+        if (type(vala) == int or type(valb) == int) and operation =='__eq__':
+            return vala == valb
+
         ret = getattr(vala, operation)(valb)
         if ret is NotImplemented:
             ret = getattr(valb, operation)(vala)
