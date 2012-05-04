@@ -125,15 +125,8 @@ class TestLessColor(unittest.TestCase):
             ('#000', '0%', '#000000'),
             ('#fff', '100%', '#ffffff'),
             ('#fff', '0%', '#ffffff'),
-            ('#29332f', '1%', '#29332f'),
-            ('#29332f', '10%', '#2e2e2e'),
-            ('#29332f', '20%', '#2e2e2e'),
-            ('#29332f', '40%', '#2e2e2e'),
-            ('#29332f', '60%', '#2e2e2e'),
-            ('#29332f', '100%', '#2e2e2e'),
-            
         ]:
-            self.assertEqual(test(c, p), v, v)
+            self.assertEqual(test(c, p), v, c)
             
     def test_spin(self):
         test = self.color.spin
@@ -148,13 +141,6 @@ class TestLessColor(unittest.TestCase):
             ('#000', '0%', '#000000'),
             ('#fff', '100%', '#ffffff'),
             ('#fff', '0%', '#ffffff'),
-            ('#29332f', '1%', '#29332f'),
-            ('#29332f', '10%', '#293331'),
-            ('#29332f', '20%', '#293332'),
-            ('#29332f', '40%', '#293033'),
-            ('#29332f', '60%', '#292d33'),
-            ('#29332f', '100%', '#2c2933'),
-            
         ]:
             self.assertEqual(test(c, p), v, v)
             

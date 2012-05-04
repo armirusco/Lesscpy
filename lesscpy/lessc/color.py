@@ -97,7 +97,7 @@ class Color():
             h, s, l = args
             if type(l) == str: l = int(l.strip('%'))
             if type(s) == str: s = int(s.strip('%'))
-            rgb = colorsys.hls_to_rgb(int(h) / 360, l / 100, s / 100)
+            rgb = colorsys.hls_to_rgb(float(h) / 360, float(l) / 100, float(s) / 100)
             color = (round(c * 255) for c in rgb)
             return self._rgbatohex(color)
         raise ValueError('Illegal color values')
@@ -113,8 +113,8 @@ class Color():
             h, s, l, a = args
             if type(l) == str: l = int(l.strip('%'))
             if type(s) == str: s = int(s.strip('%'))
-            rgb = colorsys.hls_to_rgb(int(h) / 360, l / 100, s / 100)
-            color = [round(c * 255) for c in rgb]
+            rgb = colorsys.hls_to_rgb(float(h) / 360, float(l) / 100, float(s) / 100)
+            color = [int(round(c * 255)) for c in rgb]
             color.append(round(float(a[:-1]) / 100.0, 2))
             return "rgba(%s,%s,%s,%s)" % tuple(color)
         raise ValueError('Illegal color values')
@@ -349,7 +349,7 @@ class Color():
     def _ophsl(self, color, diff, idx, op):
         if type(diff) == str: diff = int(diff.strip('%'))
         hls = list(self._hextohls(color))
-        hls[idx] = self._clamp(getattr(hls[idx], op)(diff / 100))
+        hls[idx] = self._clamp(getattr(hls[idx], op)(float(diff) / 100))
         rgb = colorsys.hls_to_rgb(*hls)
         color = (round(c * 255) for c in rgb)
         return self._rgbatohex(color)
