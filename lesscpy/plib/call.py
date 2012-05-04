@@ -8,7 +8,8 @@
 .. moduleauthor:: Jóhann T. Maríusson <jtm@robot.is>
 """
 import re, math
-from urllib.parse import quote as urlquote, urlparse
+from urllib import quote as urlquote
+import urlparse
 from .node import Node
 import lesscpy.lessc.utility as utility
 import lesscpy.lessc.color as Color

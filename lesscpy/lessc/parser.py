@@ -14,12 +14,12 @@
 import os
 import sys
 import copy
-import ply.yacc
 from . import lexer
 from . import utility
 from .scope import Scope
 from .color import Color
 from lesscpy.plib import *
+from lesscpy.lib.ply import yacc
 
 class LessParser(object):
     precedence = (
@@ -59,7 +59,7 @@ class LessParser(object):
         
         self.tokens = [t for t in self.lex.tokens 
                        if t not in self.ignored]
-        self.parser = ply.yacc.yacc(
+        self.parser = yacc.yacc(
             module=self, 
             start='tunit',
             debug=yacc_debug,
@@ -776,5 +776,5 @@ class LessParser(object):
 #        print(e.trace())
         if self.verbose:
             color = '\x1b[31m' if t == 'E' else '\x1b[33m'
-            print("%s%s: line: %d: %s\n" % (color, t, line, e), end='\x1b[0m')
+            print("%s%s: line: %d: %s\n" % (color, t, line, e))
             

@@ -10,10 +10,10 @@
     <jtm@robot.is>
 """
 import re
-import ply.lex as lex
 
 from lesscpy.lib import dom
 from lesscpy.lib import css
+from lesscpy.lib.ply import lex
 
 class LessLexer:
     states = (
