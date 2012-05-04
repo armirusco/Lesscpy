@@ -14,6 +14,7 @@ setup(
       packages=['lesscpy', 
                 'lesscpy/lessc',
                 'lesscpy/lib',
+                'lesscpy/lib/ply',
                 'lesscpy/plib',
                 'lesscpy/scripts',
                 'lesscpy/test'],
