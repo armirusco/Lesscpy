@@ -92,7 +92,7 @@ class LessParser(object):
             for pu in self.result:
                 try:
                     out.append(pu.parse(self.scope))
-                except SyntaxError as e:
+                except SyntaxError, e:
                     self.handle_error(e, 0)
             self.result = list(utility.flatten(out))
             
@@ -173,7 +173,7 @@ class LessParser(object):
                     err = "Cannot import '%s', file not found" % filename
                     self.handle_error(err, p.lineno(1), 'W')
                     p[0] = None
-            except ImportError as e:
+            except ImportError, e:
                 self.handle_error(e, p)
         else:
             p[0] = Statement(list(p)[1:], p.lineno(1))
@@ -207,7 +207,7 @@ class LessParser(object):
         """
         try:
             p[1].parse(self.scope)
-        except SyntaxError as e:
+        except SyntaxError, e:
             pass
         p[0] = p[1]
         self.scope.current = p[1]

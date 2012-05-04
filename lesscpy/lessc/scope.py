@@ -31,15 +31,15 @@ class Scope(list):
             '__names__': [],
             '__current__': None
         })
-        
-    @property
-    def current(self):
+
+    def get_current(self):
         return self[-1]['__current__']
-    
-    @current.setter
-    def current(self, value):
+
+    def set_current(self, value):
         self[-1]['__current__'] = value
-        
+
+    current = property(get_current, set_current)
+
     @property
     def scopename(self):
         """Current scope name as list

@@ -7,7 +7,7 @@
     See LICENSE for details.
 .. moduleauthor:: Jóhann T. Maríusson <jtm@robot.is>
 """
-import collections
+import itertools
 import re
 
 def flatten(lst):
@@ -18,11 +18,16 @@ def flatten(lst):
         generator
     """
     for elm in lst:
-        if isinstance(elm, collections.Iterable) and not isinstance(elm, str):
-            for sub in flatten(elm):
-                yield sub
-        else:
+        try:
+            iter(elm)
+        except TypeError:
             yield elm
+        else:
+            if not isinstance(elm, str):
+                for sub in flatten(elm):
+                    yield sub
+            else:
+                yield elm
             
 def pairwise(lst):
     """ yield item i and item i+1 in lst. e.g.

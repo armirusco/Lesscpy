@@ -99,7 +99,7 @@ class Call(Node):
         """
         try:
             n, u = utility.analyze_number(string)
-        except SyntaxError as e:
+        except SyntaxError, e:
             return False
         return True
     

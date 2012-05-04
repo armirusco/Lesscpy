@@ -1,3 +1,4 @@
+from __future__ import with_statement
 # -*- coding: utf8 -*-
 """
 .. module:: lesscpy.scripts.compiler
