@@ -114,7 +114,7 @@ class Expression(Node):
             '!=': '__ne__',
             '<>': '__ne__',
         }.get(oper)
-        if (type(vala) == int and type(valb) == int):
+        if (type(vala) == int or type(valb) == int):
             if operation =='__eq__':
                 oper = '=='
             return eval("vala %s valb" % oper)
