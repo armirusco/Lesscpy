@@ -7,7 +7,12 @@
     See LICENSE for details.
 .. moduleauthor:: Jóhann T. Maríusson <jtm@robot.is>
 """
-import copy, itertools
+import copy 
+try: 
+    from itertools import izip_longest
+except ImportError:
+    # In case we use 2.5
+    from lesscpy.lessc.utility import izip_longest
 from .node import Node
 from .block import Block
 from .expression import Expression
@@ -56,7 +61,7 @@ class Mixin(Node):
                       for v in copy.deepcopy(self.args)]
             args = args if type(args) is list else [args]
             vars = [self._parse_arg(var, arg, scope) 
-                    for arg, var in itertools.izip_longest([a for a in args], 
+                    for arg, var in izip_longest([a for a in args], 
                                                           parsed)]
             for var in vars: 
                 if var: var.parse(scope)
