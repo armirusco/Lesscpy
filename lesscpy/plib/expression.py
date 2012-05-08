@@ -7,6 +7,8 @@
     See LICENSE for details.
 .. moduleauthor:: Jóhann T. Maríusson <jtm@robot.is>
 """
+import operator
+
 from .node import Node
 from lesscpy.lessc import utility
 from lesscpy.lessc import color
@@ -102,25 +104,20 @@ class Expression(Node):
             mixed
         """
         operation = {
-            '+': '__add__',
-            '-': '__sub__',
-            '*': '__mul__',
-            '/': '__truediv__',
-            '=': '__eq__',
-            '>': '__gt__',
-            '<': '__lt__',
-            '>=': '__ge__',
-            '<=': '__le__',
-            '!=': '__ne__',
-            '<>': '__ne__',
+            '+': operator.add,
+            '-': operator.sub,
+            '*': operator.mul,
+            '/': operator.truediv,
+            '=': operator.eq,
+            '>': operator.gt,
+            '<': operator.lt,
+            '>=': operator.ge,
+            '<=': operator.le,
+            '!=': operator.ne,
+            '<>': operator.ne,
         }.get(oper)
-        if (type(vala) == int or type(valb) == int) and operation =='__eq__':
-            return vala == valb
 
-        ret = getattr(vala, operation)(valb)
-        if ret is NotImplemented:
-            ret = getattr(valb, operation)(vala)
-        return ret
+        return reduce(operation, [vala, valb])
     
     def expression(self):
         """Return str representation of expression
