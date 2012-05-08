@@ -7,8 +7,8 @@
     See LICENSE for details.
 .. moduleauthor:: Jóhann T. Maríusson <jtm@robot.is>
 """
-import itertools
 import re
+from itertools import chain, izip, repeat
 
 def flatten(lst):
     """Flatten list.
@@ -231,5 +231,19 @@ def split_unit(value):
     r = re.search('^(\-?[\d\.]+)(.*)$', str(value))
     return r.groups() if r else ('','')
     
-    
-            
+
+def izip_longest(*args, **kwds):
+    """ Re-writing this function for python 2.5 """
+    # izip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-
+    fillvalue = kwds.get('fillvalue')
+
+    def sentinel(counter=([fillvalue] * (len(args) - 1)).pop):
+        yield counter()         # yields the fillvalue, or raises IndexError
+
+    fillers = repeat(fillvalue)
+    iters = [chain(it, sentinel(), fillers) for it in args]
+    try:
+        for tup in izip(*iters):
+            yield tup
+    except IndexError:
+        pass

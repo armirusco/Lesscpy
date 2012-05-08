@@ -35,7 +35,7 @@ def create_test (args):
                         self.fail("%s: result has less lines (%d < %d)" % (cssf, i, pl))
                     line = line.rstrip()
                     if not line: continue
-                    self.assertEqual(line, pout[i], '%s: Line %d' % (cssf, i+1))
+                    self.assertEqual(line, pout[i], '%s: Line %d, Difference (CSS =! LESS): %s !=  %s' % (cssf, i+1, line, pout[i]))
                     i += 1
             if pl > i and i:
                 self.fail("%s: result has more lines (%d > %d)" % (cssf, i, pl))
@@ -54,7 +54,7 @@ def create_test (args):
                 for line in cssf.readlines():
                     if i >= ml:
                         self.fail("%s: result has less lines (%d < %d)" % (minf, i, ml))
-                    self.assertEqual(line.rstrip(), mout[i], '%s: Line %d' % (minf, i+1))
+                    self.assertEqual(line.rstrip(), mout[i], '%s: Line %d, Difference (CSS =! LESS): %s !=  %s' % (minf, i+1, line, mout[i]))
                     i += 1
             if ml > i and i:
                 self.fail("%s: result has more lines (%d > %d)" % (minf, i, ml))
