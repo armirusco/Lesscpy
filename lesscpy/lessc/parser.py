@@ -65,7 +65,8 @@ class LessParser(object):
             debug=yacc_debug,
             optimize=yacc_optimize,
             tabmodule=tabfile,
-            outputdir=outputdir
+            outputdir=outputdir,
+            write_tables=0
         )
         self.scope = scope if scope else Scope()
         self.stash = {}
