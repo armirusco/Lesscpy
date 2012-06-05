@@ -40,7 +40,7 @@ def ldirectory(inpath, outpath, options, scope):
             if not options.dry_run:
                 os.mkdir(outpath)
     less = glob.glob(os.path.join(inpath, '*.less'))
-    f = formatter.Formatter(options)
+    f = formatter.ArgsFormatter(options)
     for lf in less:
         outf = os.path.splitext(os.path.basename(lf))
         minx = '.min' if options.min_ending else ''
@@ -147,7 +147,7 @@ def run():
                     sys.exit('included file `%s` not found ...' % u)
                 sys.stdout.flush()
         p = None
-        f = formatter.Formatter(options)
+        f = formatter.ArgsFormatter(options)
         if not os.path.exists(options.target):
             sys.exit("Target not found '%s' ..." % options.target)
         if os.path.isdir(options.target):

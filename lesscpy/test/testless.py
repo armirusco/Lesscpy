@@ -25,7 +25,7 @@ def create_test (args):
         if os.path.exists(cssf):
             p = parser.LessParser()
             p.parse(filename=lessf)
-            f = formatter.Formatter(Opt())
+            f = formatter.ArgsFormatter(Opt())
             pout = f.format(p).split('\n')
             pl = len(pout)
             i = 0
@@ -46,7 +46,7 @@ def create_test (args):
             opt = Opt()
             opt.minify = True
             p.parse(filename=lessf)
-            f = formatter.Formatter(opt)
+            f = formatter.ArgsFormatter(opt)
             mout = f.format(p).split('\n')
             ml = len(mout)
             i = 0
