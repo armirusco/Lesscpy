@@ -3088,7 +3088,7 @@ def yacc(method='LALR', debug=yaccdebug, module=None, tabmodule=tab_module, star
 
     if debuglog is None:
         if debug:
-            debuglog = PlyLogger(open(debugfile,"w"))
+            debuglog = NullLogger()  # PlyLogger(sys.stderr)
         else:
             debuglog = NullLogger()
 
